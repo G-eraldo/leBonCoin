@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_utility_addresses",
+  "info": {
+    "displayName": "Address",
+    "icon": "attachment"
+  },
+  "options": {},
+  "attributes": {
+    "street_address": {
+      "type": "string"
+    },
+    "address_line_2": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "zip_code": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

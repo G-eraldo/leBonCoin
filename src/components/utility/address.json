@@ -13,7 +13,8 @@
       "type": "string"
     },
     "city": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "zip_code": {
       "type": "string"

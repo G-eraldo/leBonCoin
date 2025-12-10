@@ -72,16 +72,10 @@
       "target": "api::offer.offer",
       "mappedBy": "owner"
     },
-    "name": {
-      "type": "string"
-    },
-    "firstname": {
-      "type": "string"
-    },
-    "street_address": {
-      "type": "component",
-      "component": "utility.address",
-      "repeatable": false
+    "userProfile": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::user-profile.user-profile"
     }
   }
 }

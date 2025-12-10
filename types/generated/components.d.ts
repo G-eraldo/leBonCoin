@@ -8,7 +8,7 @@ export interface UtilityAddress extends Struct.ComponentSchema {
   };
   attributes: {
     address_line_2: Schema.Attribute.String;
-    city: Schema.Attribute.String;
+    city: Schema.Attribute.String & Schema.Attribute.Required;
     country: Schema.Attribute.String;
     street_address: Schema.Attribute.String;
     zip_code: Schema.Attribute.String;

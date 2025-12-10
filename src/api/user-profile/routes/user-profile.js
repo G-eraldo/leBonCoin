@@ -3,16 +3,6 @@
 /**
  * user-profile router
  */
+const { createCoreRouter } = require('@strapi/strapi').factories;
 
-import { factories } from '@strapi/strapi';
-
-export default factories.createCoreRouter('api::user-profile.user-profile', {
-  config: {
-    find: {
-      "middlewares": ["api::user-profile.user-profile"],
-    },
-    findOne: {
-      "middlewares": ["api::user-profile.user-profile"],
-    } 
-  }
-});
+module.exports = createCoreRouter('api::user-profile.user-profile');

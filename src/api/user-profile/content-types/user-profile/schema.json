@@ -23,6 +23,11 @@
       "type": "component",
       "component": "utility.address",
       "repeatable": false
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

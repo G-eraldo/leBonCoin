@@ -29,6 +29,12 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "userProfile"
+    },
+    "commandes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::commande.commande",
+      "mappedBy": "user_profile"
     }
   }
 }

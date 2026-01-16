@@ -430,6 +430,40 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCommandeCommande extends Struct.CollectionTypeSchema {
+  collectionName: 'commandes';
+  info: {
+    displayName: 'commande';
+    pluralName: 'commandes';
+    singularName: 'commande';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    amount: Schema.Attribute.Decimal;
+    content: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::commande.commande'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    status: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_profile: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::user-profile.user-profile'
+    >;
+  };
+}
+
 export interface ApiOfferOffer extends Struct.CollectionTypeSchema {
   collectionName: 'offers';
   info: {
@@ -536,6 +570,7 @@ export interface ApiUserProfileUserProfile extends Struct.CollectionTypeSchema {
   };
   attributes: {
     adress: Schema.Attribute.Component<'utility.address', false>;
+    commandes: Schema.Attribute.Relation<'oneToMany', 'api::commande.commande'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1072,6 +1107,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::commande.commande': ApiCommandeCommande;
       'api::offer.offer': ApiOfferOffer;
       'api::pizza.pizza': ApiPizzaPizza;
       'api::user-profile.user-profile': ApiUserProfileUserProfile;

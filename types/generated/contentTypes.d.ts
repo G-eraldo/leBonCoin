@@ -442,7 +442,6 @@ export interface ApiCommandeCommande extends Struct.CollectionTypeSchema {
   };
   attributes: {
     amount: Schema.Attribute.Decimal;
-    content: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -452,8 +451,12 @@ export interface ApiCommandeCommande extends Struct.CollectionTypeSchema {
       'api::commande.commande'
     > &
       Schema.Attribute.Private;
+    pate: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    quantity: Schema.Attribute.Integer;
     status: Schema.Attribute.String;
+    taille: Schema.Attribute.String;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

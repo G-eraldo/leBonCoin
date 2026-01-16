@@ -23,17 +23,8 @@
     "status": {
       "type": "string"
     },
-    "title": {
-      "type": "string"
-    },
-    "taille": {
-      "type": "string"
-    },
-    "pate": {
-      "type": "string"
-    },
-    "quantity": {
-      "type": "integer"
+    "content": {
+      "type": "json"
     }
   }
 }

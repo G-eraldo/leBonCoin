@@ -13,24 +13,20 @@ module.exports = createCoreController(
   ({ strapi }) => ({
     async create(ctx) {
       try {
-        const { token, amount, title, taille, pate, quantity, user_profile } =
-          ctx.request.body.data;
+        const { token, amount, content, user_profile } = ctx.request.body.data;
 
         const { status } = await stripe.charges.create({
           // desctructuring de la clé status de la réponse de stripe
           amount: amount, // prix en centime
           currency: "eur", // devise
-          description: `Paiement image : ${title} ${taille} ${pate} ${quantity}`, // identification de la commande
+          description: `Paiement image : ${content}`, // identification de la commande
           source: token, // le token de stripe
         });
         if (status === "succeeded") {
           // On prépare les données pour Strapi (nécessite un objet data)
           ctx.request.body.data = {
             amount: amount,
-            title: title,
-            taille: taille,
-            pate: pate,
-            quantity: quantity,
+            content: content,
             user_profile: user_profile,
             status: status,
           };

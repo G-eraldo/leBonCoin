@@ -18,7 +18,7 @@ module.exports = createCoreController(
 
         const { status } = await stripe.charges.create({
           // desctructuring de la clé status de la réponse de stripe
-          amount: amount * 100, // prix en centime
+          amount: amount, // prix en centime
           currency: "eur", // devise
           description: `Paiement image : ${title} ${taille} ${pate} ${quantity}`, // identification de la commande
           source: token, // le token de stripe

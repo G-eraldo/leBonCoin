@@ -11,6 +11,23 @@ const { createCoreController } = require("@strapi/strapi").factories;
 module.exports = createCoreController(
   "api::commande.commande",
   ({ strapi }) => ({
+    // On surcharge le find standard
+    async find(ctx) {
+      // 1. On récupère l'utilisateur connecté (via son JWT)
+      const user = ctx.state.user;
+      if (!user) return ctx.unauthorized();
+      // 2. On force le filtre sur son profil (via Strapi 5 documents engine)
+      ctx.query.filters = {
+        ...ctx.query.filters,
+        user_profile: {
+          users_permissions_user: {
+            id: user.id,
+          },
+        },
+      };
+      // 3. On appelle la logique de base de Strapi avec le filtre forcé
+      return await super.find(ctx);
+    },
     async create(ctx) {
       try {
         const { token, amount, content, user_profile } = ctx.request.body.data;
@@ -39,5 +56,5 @@ module.exports = createCoreController(
         ctx.response.body = { error: error.message };
       }
     },
-  })
+  }),
 );

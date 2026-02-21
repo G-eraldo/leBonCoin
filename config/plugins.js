@@ -10,6 +10,7 @@ module.exports = ({ env }) => ({
         upload: { resource_type: "auto" },
         uploadStream: {
           timeout: 1000 * 600 * 3,
+          resource_type: "auto",
         },
         delete: {},
       },

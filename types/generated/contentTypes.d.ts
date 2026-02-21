@@ -513,6 +513,34 @@ export interface ApiOfferOffer extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPdfPdf extends Struct.CollectionTypeSchema {
+  collectionName: 'pdfs';
+  info: {
+    displayName: 'Pdf';
+    pluralName: 'pdfs';
+    singularName: 'pdf';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    document: Schema.Attribute.Media<'files', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::pdf.pdf'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPizzaPizza extends Struct.CollectionTypeSchema {
   collectionName: 'pizzas';
   info: {
@@ -1140,6 +1168,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::commande.commande': ApiCommandeCommande;
       'api::offer.offer': ApiOfferOffer;
+      'api::pdf.pdf': ApiPdfPdf;
       'api::pizza.pizza': ApiPizzaPizza;
       'api::user-profile.user-profile': ApiUserProfileUserProfile;
       'api::video.video': ApiVideoVideo;

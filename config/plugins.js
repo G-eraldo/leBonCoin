@@ -7,7 +7,7 @@ module.exports = ({ env }) => ({
         CLOUDINARY_URL: env("CLOUDINARY_URL"),
       },
       actionOptions: {
-        upload: {},
+        upload: { resource_type: "auto" },
         uploadStream: {
           timeout: 1000 * 600 * 3,
         },
